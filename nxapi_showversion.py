@@ -14,14 +14,11 @@ payload=[
     "jsonrpc": "2.0",
     "method": "cli",
     "params": {
-      "cmd": "show vlan",
+      "cmd": "show version",
       "version": 1
     },
     "id": 1
   }
 ]
 response = requests.post(url,data=json.dumps(payload), headers=myheaders,auth=(switchuser,switchpassword)).json()
-for id in response ['result']['body']['TABLE_vlanbrief']['ROW_vlanbrief']:
-    x = id.get('vlanshowbr-vlanid')
-    y = id.get('vlanshowbr-vlanname')
-    print 'VLAN ID ' + (x) + ' ' + 'Name' + ' ' + (y)
+print "NX-OS Version %s" % response['result']['body']['kickstart_ver_str']
