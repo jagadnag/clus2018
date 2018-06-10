@@ -13,20 +13,19 @@ print "Resetting Configuration on", ip_address
 
 remote_connection = ssh_client.invoke_shell()
 
-reset_config = ["configure terminal\n",
-                "no interface loopback 0\n",
-                "no interface loopback 1\n",
-                "cdp timer 60\n",
-                "no vlan 2-10\n",
-                "hostname nxosv-1\n",
-                "end\n"]
+reset_config = ["configure terminal",
+                "no interface loopback 0",
+                "no interface loopback 1",
+                "cdp timer 60",
+                "no vlan 2-10",
+                "hostname nxosv-1",
+                "end"]
 
 for line in reset_config:
     line=line.strip()
     print line
-    remote_connection.send(line)
+    remote_connection.send(line + "\n")
     time.sleep(0.5)
 
 output = remote_connection.recv(65535)
-
 ssh_client.close
