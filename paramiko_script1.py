@@ -7,7 +7,7 @@ password = "C1sco12345"
 
 ssh_client = paramiko.SSHClient()
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh_client.connect(hostname=ip_address,username=username,password=password)
+ssh_client.connect(hostname=ip_address, username=username, password=password, allow_agent=False, look_for_keys=False)
 
 print "Successful connection", ip_address
 
